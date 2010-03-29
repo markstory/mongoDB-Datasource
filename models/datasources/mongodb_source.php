@@ -93,8 +93,6 @@ class MongodbSource extends DataSource {
 		return $this->connected;
 	}
 
-
-
 /**
  * Close database connection
  *
@@ -103,7 +101,7 @@ class MongodbSource extends DataSource {
  */
 	public function close() {
 		return $this->disconnect();
-	}	
+	}
 
 /**
  * Disconnect from the database
@@ -132,14 +130,13 @@ class MongodbSource extends DataSource {
 		if (empty($list)) {
 			return array();
 		} else {
-			$collections = null;		
+			$collections = null;
 			foreach($this->_db->listCollections() as $collection) {
 				$collections[] = $collection->getName();
 			}
 			return $collections;
 		}
 	}
-
 
 /**
  * Calculate
@@ -148,10 +145,9 @@ class MongodbSource extends DataSource {
  * @return array
  * @access public
  */
-	public function calculate (&$model) {
+	public function calculate(&$model) {
 		return array('count' => true);
 	}
-
 
 /**
  * Create Data
@@ -181,7 +177,6 @@ class MongodbSource extends DataSource {
 		}
 		return false;
 	}
-
 
 /**
  * Update Data
@@ -220,8 +215,6 @@ class MongodbSource extends DataSource {
 		}
 	}
 
-
-
 /**
  * Update multiple Record
  *
@@ -240,8 +233,6 @@ class MongodbSource extends DataSource {
 		
 		return $result;
 	}
-
-
 
 /**
  * Delete Data
@@ -272,7 +263,6 @@ class MongodbSource extends DataSource {
 		$mongoCollectionObj = $this->_db
 			->selectCollection($model->table);
 
-
 		$result = true;
 		if (is_array($conditions) && is_array($conditions[$model->alias . '._id'])) {
 			//for Model::deleteAll()
@@ -285,12 +275,8 @@ class MongodbSource extends DataSource {
 		} else {
 			$return = $mongoCollectionObj->remove($conditions);
 		}
-
-		return $result;			
-
+		return $result;
 	}
-
-
 
 /**
  * Describe
@@ -302,8 +288,6 @@ class MongodbSource extends DataSource {
 	public function describe(&$model) {
 		return array();
 	}
-
-
 
 /**
  * Read Data
